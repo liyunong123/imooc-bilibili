@@ -33,4 +33,14 @@ public class UserApi {
         return JsonResponse.success();
     }
 
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
+    @PostMapping("/user-tokens")
+    public JsonResponse<String> login(@RequestBody User user){
+        String token = userService.login(user);
+        return new JsonResponse<>(token);
+    }
 }
