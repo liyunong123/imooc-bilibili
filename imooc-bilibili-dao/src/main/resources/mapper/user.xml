@@ -69,4 +69,54 @@
             id = #{userId}
     </select>
 
+    <update id="updateUsers" parameterType="com.imooc.bilibili.domain.User">
+        update
+        t_user
+        set
+        <if test="phone != null and phone != '' ">
+            phone = #{phone},
+        </if>
+        <if test="email != null and email != '' ">
+            email = #{email},
+        </if>
+        <if test="password != null and password != '' ">
+            password = #{password},
+        </if>
+        updateTime = #{updateTime}
+        where
+        id = #{id}
+    </update>
+
+    <select id="getUserByPhoneOrEmail" parameterType="java.lang.String" resultType="com.imooc.bilibili.domain.User">
+        select
+            *
+        from
+            t_user
+        where
+            phone = #{phone} or email = #{email}
+    </select>
+
+    <update id="updateUserInfos" parameterType="com.imooc.bilibili.domain.UserInfo">
+        update
+        t_user_info
+        set
+        <if test="nick != null and nick != '' ">
+            nick = #{nick},
+        </if>
+        <if test="avatar != null">
+            avatar = #{avatar},
+        </if>
+        <if test="sign != null">
+            sign = #{sign},
+        </if>
+        <if test="birth != null and birth != '' ">
+            birth = #{birth},
+        </if>
+        <if test="gender != null and gender != '' ">
+            gender = #{gender},
+        </if>
+        updateTime = #{updateTime}
+        where
+        userId = #{userId}
+    </update>
 </mapper>
