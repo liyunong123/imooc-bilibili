@@ -12,7 +12,6 @@
         where
             phone = #{phone}
     </select>
-
     <insert id="addUser" parameterType="com.imooc.bilibili.domain.User" useGeneratedKeys="true" keyProperty="id">
         insert into
             t_user(
@@ -52,5 +51,22 @@
                 )
 
     </insert>
+
+    <select id="getUserById" parameterType="java.lang.Long" resultType="com.imooc.bilibili.domain.User">
+        select
+            *
+        from
+            t_user
+        where
+            id = #{id}
+    </select>
+    <select id="getUserInfoByUserId" resultType="com.imooc.bilibili.domain.UserInfo">
+        select
+            *
+        from
+            t_user_info
+        where
+            id = #{userId}
+    </select>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.imooc.bilibili.api;
 
+import com.imooc.bilibili.api.suport.UserSupport;
 import com.imooc.bilibili.domain.JsonResponse;
 import com.imooc.bilibili.domain.User;
 import com.imooc.bilibili.service.UserService;
@@ -13,6 +14,15 @@ public class UserApi {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserSupport userSupport;
+
+    @GetMapping("/users")
+    public JsonResponse<User> getUserInfo(){
+        Long userId = userSupport.getCurrentUserId();
+        User user = userService.getUserInfo(userId);
+        return new JsonResponse<>(user);
+    }
     /**
      * 获取RSA公钥
      */

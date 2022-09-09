@@ -23,6 +23,12 @@ public class TokenUtil {
                 .withExpiresAt(calendar.getTime())
                 .sign(algorithm);
     }
+
+    /**
+     * 验证用户令牌
+     * @param token
+     * @return
+     */
     public static Long verifyToken(String token){
         try{
             Algorithm algorithm = Algorithm.RSA256(RSAUtil.getPublicKey(),RSAUtil.getPrivateKey());
